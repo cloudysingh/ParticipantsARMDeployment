@@ -1,0 +1,86 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Network-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Network-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'
+  displayName: 'Create RG-WestUS-Connectivity-Network-1'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Data-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Data-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'      
+  displayName: 'Create RG-WestUS-Connectivity-Data-1'   
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Backup-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Backup-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'      
+  displayName: 'Create RG-WestUS-Connectivity-Backup-1'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Management-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Management-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'      
+  displayName: 'Create RG-WestUS-Connectivity-Management-1'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Security-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Security-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'
+  displayName: 'Create RG-WestUS-Connectivity-Security-1'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      deploymentScope: 'Subscription'
+      azureResourceManagerConnection: 'Karan - Microsoft Azure Internal Consumption(642e2122-d6d5-4922-beb1-5039927664c3)'
+      subscriptionId: '642e2122-d6d5-4922-beb1-5039927664c3'
+      location: 'West US'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Workload-1/deploy.json'
+      csmParametersFileLink: 'https://raw.githubusercontent.com/cloudysingh/ParticipantsARMDeployment/master/Resource%20Groups/RG-WestUS-Connectivity-Workload-1/Parameters/parameters.json'
+      deploymentMode: 'Incremental'      
+  displayName: 'Create RG-WestUS-Connectivity-Workload-1'    
